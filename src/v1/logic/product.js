@@ -11,6 +11,7 @@ async function createProduct(data) {
     price,
     mesureUnit,
     disponibility,
+    created: Date.now(),
   }).save();
 }
 
@@ -28,7 +29,7 @@ async function deleteProduct(id) {
 }
 
 async function getProducts() {
-  return await product.find().exec();
+  return await product.find().sort({ createdAt: -1 }).exec();
 }
 
 exports.create = createProduct;
