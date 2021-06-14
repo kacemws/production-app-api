@@ -16,6 +16,7 @@ var path = require("path");
 const user = require("./src/v1/routes/user");
 const supplyRequest = require("./src/v1/routes/supplyRequest");
 const cart = require("./src/v1/routes/clientCart");
+const production = require("./src/v1/routes/production");
 
 // INIT
 InitiateMongoServer();
@@ -30,6 +31,7 @@ app.use(cors());
 app.use("/v1/user", user);
 app.use("/v1/supply-request", supplyRequest);
 app.use("/v1/cart", cart);
+app.use("/v1/production", production);
 
 app.get("/v1/", (req, res) => {
   // res.send(
