@@ -10,8 +10,8 @@ const saleSchema = new mongoose.Schema({
     default: false,
   },
   saleDate: {
-    type: String,
-    required: [true, "code is required"],
+    type: Date,
+    required: [true, "sale date is required"],
   },
   createdAt: {
     type: Date,
