@@ -20,6 +20,7 @@ const production = require("./src/v1/routes/production");
 const product = require("./src/v1/routes/product");
 const rawMaterial = require("./src/v1/routes/rawMaterial");
 const sale = require("./src/v1/routes/sale");
+const supply = require("./src/v1/routes/supply");
 
 // INIT
 InitiateMongoServer();
@@ -38,6 +39,7 @@ app.use("/v1/production", production);
 app.use("/v1/product", product);
 app.use("/v1/raw-material", rawMaterial);
 app.use("/v1/sale", sale);
+app.use("/v1/supply", supply);
 
 app.get("/v1/", (req, res) => {
   // res.send(
