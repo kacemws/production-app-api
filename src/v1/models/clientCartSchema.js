@@ -17,6 +17,10 @@ const clientCartSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  status: {
+    type: String,
+    required: [true, "status is required"],
+  },
   createdAt: {
     type: Date,
     default: Date.now(),

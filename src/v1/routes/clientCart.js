@@ -96,7 +96,7 @@ router.put("/:id", auth, async (req, res) => {
       };
     }
 
-    const { product, quantity, client, price } = req.body;
+    const { product, quantity, client, price, status } = req.body;
 
     const cart = await cartModule.find(id);
 
@@ -112,6 +112,7 @@ router.put("/:id", auth, async (req, res) => {
       quantity,
       client,
       price,
+      status,
     });
 
     res.status(200).json({
@@ -184,6 +185,7 @@ function verifyExistingCart(data) {
     quantity: Joi.number().required(),
     client: Joi.string().required(),
     price: Joi.number().required(),
+    status: Joi.string().required(),
   });
 
   return schema.validate(data);

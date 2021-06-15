@@ -17,6 +17,11 @@ const supplyRequestSchema = new mongoose.Schema({
     type: Number,
     required: [true, "price is required"],
   },
+  approved: {
+    type: Boolean,
+    required: [true, "approved is required"],
+    default: false,
+  },
   createdAt: {
     type: Date,
     default: Date.now(),

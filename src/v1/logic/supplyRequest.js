@@ -14,6 +14,7 @@ async function createRequest(data) {
     rawMaterial,
     vendor,
     price,
+    approved: false,
     created: Date.now(),
   }).save();
 }

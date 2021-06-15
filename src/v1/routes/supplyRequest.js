@@ -96,7 +96,7 @@ router.put("/:id", auth, async (req, res) => {
       };
     }
 
-    const { quantity, rawMaterial, vendor, price } = req.body;
+    const { quantity, rawMaterial, vendor, price, approved } = req.body;
 
     const request = await supplyRequestModule.find(id);
 
@@ -112,6 +112,7 @@ router.put("/:id", auth, async (req, res) => {
       rawMaterial,
       vendor,
       price,
+      approved,
     });
 
     res.status(200).json({
@@ -184,6 +185,7 @@ function verifyExistingRequest(data) {
     rawMaterial: Joi.string().required(),
     vendor: Joi.string().required(),
     price: Joi.number().required(),
+    approved: Joi.bool().required(),
   });
 
   return schema.validate(data);

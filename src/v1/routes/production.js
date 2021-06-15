@@ -52,13 +52,14 @@ router.post("/", auth, async (req, res) => {
       };
     }
 
-    const { product, state, start, duration } = req.body;
+    const { product, state, start, duration, quantity } = req.body;
 
     const production = await productionModule.create({
       product,
       state,
       start,
       duration,
+      quantity,
     });
 
     res.status(201).json({
@@ -173,6 +174,7 @@ function verifyProduction(data) {
     state: Joi.number(),
     start: Joi.date(),
     duration: Joi.number().required(),
+    quantity: Joi.number().required,
   });
 
   return schema.validate(data);

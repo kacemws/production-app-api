@@ -7,10 +7,11 @@ const production = mongoose.model(
 );
 
 async function createProduction(data) {
-  const { product, state, start, duration } = data;
+  const { product, state, start, duration, quantity } = data;
 
   return await new production({
     product,
+    quantity,
     state,
     start,
     duration,

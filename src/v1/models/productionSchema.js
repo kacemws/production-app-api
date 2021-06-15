@@ -5,6 +5,11 @@ const productionSchema = new mongoose.Schema({
     type: String,
     required: [true, "product is required"],
   },
+  quantity: {
+    type: Number,
+    required: [true, "quantity is required"],
+    default: 1,
+  },
   state: {
     type: Number,
     default: "0",

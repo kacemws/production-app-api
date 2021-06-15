@@ -14,6 +14,7 @@ async function createCart(data) {
     quantity,
     client,
     price,
+    status: "open",
     created: Date.now(),
   }).save();
 }
