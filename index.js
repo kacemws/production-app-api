@@ -22,7 +22,7 @@ const rawMaterial = require("./src/v1/routes/rawMaterial");
 const sale = require("./src/v1/routes/sale");
 const supply = require("./src/v1/routes/supply");
 const vendor = require("./src/v1/routes/vendor");
-const client = require("./src/v1/routes/client");
+const client = require("./src/v1/routes/clients");
 
 // INIT
 InitiateMongoServer();
