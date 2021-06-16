@@ -21,6 +21,8 @@ const product = require("./src/v1/routes/product");
 const rawMaterial = require("./src/v1/routes/rawMaterial");
 const sale = require("./src/v1/routes/sale");
 const supply = require("./src/v1/routes/supply");
+const vendor = require("./src/v1/routes/vendor");
+const client = require("./src/v1/routes/client");
 
 // INIT
 InitiateMongoServer();
@@ -40,6 +42,8 @@ app.use("/v1/product", product);
 app.use("/v1/raw-material", rawMaterial);
 app.use("/v1/sale", sale);
 app.use("/v1/supply", supply);
+app.use("/v1/vendor", vendor);
+app.use("/v1/client", client);
 
 app.get("/v1/", (req, res) => {
   // res.send(

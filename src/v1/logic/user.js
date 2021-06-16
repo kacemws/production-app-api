@@ -34,7 +34,17 @@ async function matchingPasswords(psw, storedPsw) {
   return await bcrypt.compare(psw, storedPsw);
 }
 
+async function getVendors() {
+  return await user.find({ role: "vendor" }).sort({ createdAt: -1 }).exec();
+}
+
+async function getClients() {
+  return await user.find({ role: "client" }).sort({ createdAt: -1 }).exec();
+}
+
 exports.create = createUser;
 exports.find = findUser;
+exports.findClients = getClients;
+exports.findVendors = getVendors;
 exports.findUserById = findUserById;
 exports.matchingPasswords = matchingPasswords;
