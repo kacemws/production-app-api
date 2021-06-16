@@ -33,7 +33,10 @@ async function deleteCart(id) {
 }
 
 async function getCarts() {
-  return await clientCart.find().sort({ createdAt: -1 }).exec();
+  return await clientCart
+    .find({ status: "open" })
+    .sort({ createdAt: -1 })
+    .exec();
 }
 
 exports.create = createCart;

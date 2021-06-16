@@ -6,6 +6,7 @@ const auth = require("../middleware/auth");
 
 //utils
 const cartModule = require("../logic/clientCart");
+const saleModule = require("../logic/sale");
 
 router.get("/", auth, async (req, res) => {
   try {
@@ -114,6 +115,14 @@ router.put("/:id", auth, async (req, res) => {
       price,
       status,
     });
+
+    if (status == "close") {
+      await saleModule.create({
+        cart: id,
+        confirmed: false,
+        saleDate: Date.now(),
+      });
+    }
 
     res.status(200).json({
       message: "updated successfuly",
