@@ -6,6 +6,7 @@ const auth = require("../middleware/auth");
 
 //utils
 const saleModule = require("../logic/sale");
+const cartModule = require("../logic/clientCart");
 
 router.get("/", auth, async (req, res) => {
   try {
@@ -19,6 +20,23 @@ router.get("/", auth, async (req, res) => {
         body: "No sales",
       };
     }
+
+    auxSales = [];
+    for (const sale of sales) {
+      let cart = await cartModule.find(sale.cart);
+      auxSales.push({
+        _id: sale["_id"],
+        product: cart?.product,
+        quantity: cart?.quantity,
+        client: cart?.client,
+        price: cart?.price,
+        confirmed: sale?.confirmed,
+        createdAt: sale?.createdAt,
+      });
+    }
+    sales = auxSales;
+    console.log({ sales });
+
     // Send 200 - notes
     res.status(200).json({
       sales,
@@ -95,7 +113,7 @@ router.put("/:id", auth, async (req, res) => {
       };
     }
 
-    const { cart, confirmed, saleDate } = req.body;
+    const { confirmed } = req.body;
 
     const sale = await saleModule.find(id);
 
@@ -107,9 +125,7 @@ router.put("/:id", auth, async (req, res) => {
     }
 
     await saleModule.update(id, {
-      cart,
       confirmed,
-      saleDate,
     });
 
     res.status(200).json({
@@ -177,9 +193,7 @@ function verifySale(data) {
 function verifyExistingSale(data) {
   const schema = Joi.object({
     id: Joi.string().required(),
-    cart: Joi.string().required(),
     confirmed: Joi.bool(),
-    saleDate: Joi.date().required(),
   });
 
   return schema.validate(data);
