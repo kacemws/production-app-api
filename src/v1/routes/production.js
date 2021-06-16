@@ -174,7 +174,7 @@ function verifyProduction(data) {
     state: Joi.number(),
     start: Joi.date(),
     duration: Joi.number().required(),
-    quantity: Joi.number().required,
+    quantity: Joi.number().required(),
   });
 
   return schema.validate(data);
